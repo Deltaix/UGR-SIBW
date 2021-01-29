@@ -1,0 +1,29 @@
+{% extends "padre.html" %}
+
+{% block panel %}
+    <div id="inicio">
+        {% if not nombre %}
+            <a href="login.php">Iniciar sesión</a> - <a href="registrarse.php">Registrarse</a>
+        {% else %}
+            {% if rango == "usernormal" %}
+                <strong>{{nombre}}</strong> - Usuario registrado - <a href="logout.php">Cerrar sesión</a>
+            {% elseif rango == "moderador" %}
+                <strong>{{nombre}}</strong> - Moderador - <a href="logout.php">Cerrar sesión</a>
+            {% elseif rango == "gestor" %}
+                <strong>{{nombre}}</strong> - Gestor - <a href="logout.php">Cerrar sesión</a>
+            {% else %}
+                <strong>{{nombre}}</strong> - Superusuario - <a href="logout.php">Cerrar sesión</a>
+            {% endif %}
+            <br><br><strong><a href="panel.php">Panel de control</a></strong>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block eventos %}
+    <div class="articulo">
+        <input id="buscador" name="peti" type="text" onkeyup="buscar()" placeholder="Buscar...">
+        <div id="resultados">
+            
+        </div>
+    </div>
+{% endblock %}

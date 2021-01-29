@@ -1,0 +1,104 @@
+{% extends "padre.html" %}
+
+{% block panel %}
+    <div id="inicio">
+        {% if not nombre %}
+            <a href="login.php">Iniciar sesión</a> - <a href="registrarse.php">Registrarse</a>
+        {% else %}
+            {% if rango == "usernormal" %}
+                <strong>{{nombre}}</strong> - Usuario registrado - <a href="logout.php">Cerrar sesión</a>
+            {% elseif rango == "moderador" %}
+                <strong>{{nombre}}</strong> - Moderador - <a href="logout.php">Cerrar sesión</a>
+            {% elseif rango == "gestor" %}
+                <strong>{{nombre}}</strong> - Gestor - <a href="logout.php">Cerrar sesión</a>
+            {% else %}
+                <strong>{{nombre}}</strong> - Superusuario - <a href="logout.php">Cerrar sesión</a>
+            {% endif %}
+            <br><br><strong><a href="panel.php">Panel de control</a></strong>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block eventos %}
+    {% for p in banned %}
+        <div class="baneada" id="{{p.palabra}}"></div>
+    {% endfor %}
+    <div class="articulo">
+        <div class="titulo">
+            <div class="container">
+                {% for foto in galeria %}
+                    <div class="mySlides">
+                        <img src="{{foto.ruta}}" style="width:30%">
+                    </div>
+                {% endfor %}
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            {{evento.nombre}}
+        </div>
+            <div class="subtitulo">{{evento.lugar}}</div>
+            <p>{{evento.fecha}}</p>
+            <p>
+                {{evento.texto}}
+            </p>
+            <p>
+                <a href="{{evento.twitter}}">
+                    <img class="redsocial" src="images/logotwitter.png"/>
+                </a>
+                <a href="{{evento.facebook}}/">
+                    <img class="redsocial" src="images/logofacebook.png"/>
+                </a>
+                <a href="evento_imprimir.php?id={{evento.id}}">
+                    <img class="redsocial" src="images/print.png"/>
+                </a>
+                <form id="form" method="post" action="editareventos.php" accept-charset="utf-8">
+                    <button>Editar</button>
+                    <input type="hidden" name="idevento" value="{{evento.id}}"/>
+                </form>
+                <form id="form" method="post" action="evento.php" accept-charset="utf-8">
+                    <button>Borrar</button>
+                    <input type="hidden" name="idborrar" value="{{evento.id}}"/>
+                </form>
+            </p>
+            <p>
+                <button id="boton_comentarios" onclick="showComments()">Comentarios</button>
+            </p>
+        </div>
+
+        <div id="caja_comentarios">
+            <div id="comentarios">
+                {% for comentario in comentarios %}
+                    <div id="comentario">
+                        <p id="nombre">{{comentario.nombre}}</p>
+                        <p id="fecha">{{comentario.fecha}}</p>
+                        <p>{{comentario.texto}}</p>
+                        {% if comentario.editado %}
+                            <p id="smalltext">Editado por un moderador.</p>
+                        {% endif %}
+                        {% if rango == "moderador" or rango == "gestor" or rango == "superusuario" %}
+                            <form id="form" method="post" action="editarcomentarios.php" accept-charset="utf-8">
+                                <button>Editar</button>
+                                <input type="hidden" name="idcomentario" value="{{comentario.id}}"/>
+                                <input type="hidden" name="idevento" value="{{evento.id}}"
+                            </form>
+                            <form id="form" method="post" action="evento.php" accept-charset="utf-8">
+                                <button>Borrar</button>
+                                <input type="hidden" name="idcomentario" value="{{comentario.id}}"/>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if nombre %}
+                <div id="formulario">
+                    <form id="form" method="post" action="evento.php?id={{evento.id}}" accept-charset="utf-8">
+                        <p>Text:</p>
+                        <p><textarea id="ftext" style="color: #000" rows="10" cols="55" name="ftext"></textarea></p>
+                        <input id="boton_enviar" type="submit" style="color: #000" value="Enviar"/>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

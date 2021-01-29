@@ -1,0 +1,40 @@
+{% extends "padre.html" %}
+
+{% block panel %}
+    <div id="inicio">
+        {% if rango == "usernormal" %}
+            <strong>{{nombre}}</strong> - User Registrado - <a href="logout.php">Cerrar sesión</a>
+        {% elseif rango == "moderador" %}
+            <strong>{{nombre}}</strong> - Moderador - <a href="logout.php">Cerrar sesión</a>
+        {% elseif rango == "gestor" %}
+            <strong>{{nombre}}</strong> - Gestor - <a href="logout.php">Cerrar sesión</a>
+        {% else %}
+            <strong>{{nombre}}</strong> - Superusuario - <a href="logout.php">Cerrar sesión</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block eventos %}
+    <div class="articulo">
+        <h1>Cambiar contraseña</h1>
+        <form action="panel.php" method="post">
+            Nueva contraseña: <input type="password" style="color: #000" name="newpass"/><br><br>
+            Repetir contraseña: <input type="password" style="color: #000" name="newpass2"/><br><br>
+            Contraseña actual: <input type="password" style="color: #000" name="oldpass"/><br><br>
+            <input type="submit" id="boton_comentarios" value="Cambiar"/>
+        </form>
+        {% if rango == "moderador" or rango == "gestor" or rango == "superusuario" %}
+            <h1>Moderar comentarios</h1>
+            <a href="listacomentarios.php"><button id="boton_comentarios">Moderar</button></a>
+        {% endif %}
+        {% if rango == "gestor" or rango == "superusuario" %}
+            <h1>Gestionar eventos</h1>
+            <a href="listaeventos.php"><button id="boton_comentarios">Moderar</button></a>
+        {% endif %}
+        {% if rango == "superusuario" %}
+            <h1>Administrar rangos</h1>
+            <a href="administrar.php"><button id="boton_comentarios">Administrar</button></a>
+        {% endif %}
+        <br>
+    </div>
+{% endblock %}

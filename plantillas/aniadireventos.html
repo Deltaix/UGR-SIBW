@@ -1,0 +1,57 @@
+{% extends "padre.html" %}
+
+{% block panel %}
+    <div id="inicio">
+        {% if not nombre %}
+            <a href="login.php">Iniciar sesión</a> - <a href="registrarse.php">Registrarse</a>
+        {% else %}
+            {% if rango == "usernormal" %}
+                <strong>{{nombre}}</strong> - Usuario registrado - <a href="logout.php">Cerrar sesión</a>
+            {% elseif rango == "moderador" %}
+                <strong>{{nombre}}</strong> - Moderador - <a href="logout.php">Cerrar sesión</a>
+            {% elseif rango == "gestor" %}
+                <strong>{{nombre}}</strong> - Gestor - <a href="logout.php">Cerrar sesión</a>
+            {% else %}
+                <strong>{{nombre}}</strong> - Superusuario - <a href="logout.php">Cerrar sesión</a>
+            {% endif %}
+            <br><br><strong><a href="panel.php">Panel de control</a></strong>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block eventos %}
+    <div class="articulo">
+        <div id="formulario">
+            <form id="form" method="post" action="aniadireventos.php" accept-charset="utf-8" enctype="multipart/form-data">
+                <label for="texto">Nombre:</label>
+                <input type="text" style="color: #000" name="nombre"/>
+                <br><br>
+                <label for="texto">Fecha:</label>
+                <input type="date" style="color: #000" name="fecha"/>
+                <br><br>
+                <label for="texto">Lugar:</label>
+                <input type="text" style="color: #000" name="lugar"/>
+                <br><br>
+                <label for="texto">Texto:</label>
+                <textarea id="ftext" style="color: #000" rows="10" cols="55" name="texto"></textarea>
+                <br><br>
+                <label for="img">Foto portada:</label>
+                <input type="file" style="color: #000" name="foto" accept="image/*"/>
+                <br><br>
+                <label for="img">Galería:</label>
+                <input type="file" style="color: #000" name="galeria" accept="image/*"/>
+                <br><br>
+                <label for="texto">Facebook:</label>
+                <input type="text" style="color: #000" name="facebook"/>
+                <br><br>
+                <label for="texto">Twitter:</label>
+                <input type="text" style="color: #000" name="twitter"/>
+                <br><br>
+                <label for="etiquetas">Etiquetas:</label>
+                <input type="text" style="color: #000" name="tag"/>
+                <br><br>
+                <input id="boton_enviar" type="submit" style="color: #000" value="Enviar"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

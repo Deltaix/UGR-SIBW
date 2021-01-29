@@ -1,0 +1,290 @@
+/* Para evitar repetir código, defino para todos los elementos la misma font y color de font */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+/* Fondo negro a toda la página */
+body {
+    /*color: #fff*/
+    background-color: #000;
+}
+
+button {
+    color: #000;
+}
+
+footer {
+    width: 100%;
+    background-color: #571845; 
+    padding-top: 3%; 
+    padding-bottom: 3%; 
+    text-align: center; 
+}
+
+/* Con esto se evita que las imágenes se salgan del tamaño que se les ha asignado */
+img {
+    max-width: 100%;
+}
+
+/* Se crea una cuadrícula dejándole un 5% del espacio al logo y el resto para el título y botones */
+header {
+    display: grid;
+    grid-template-columns: 5% auto auto;
+    grid-column-gap: 1%;
+    background-color: #571845;
+    padding: 1%;
+}
+
+/* Se crea una cuadrícula dejándole un 15% del espacio a la barra lateral y el resto para los eventos */
+#principal {
+    display: grid;
+    grid-template-columns: 15% auto;
+    grid-column-gap: 0.5%;
+    margin: 0.5% 0% 0.5%;
+}
+
+.baneada {
+    display:none;
+}
+
+#inicio {
+    text-align: right;
+}
+
+#caja_comentarios {
+    display: none;
+    background-color: #571845;
+}
+
+#comentario {
+    margin: 2%;
+    background-color: #920F3F;
+    padding: 2%;
+    text-align: justify;
+}
+
+#nombre {
+    font-weight: bold;
+}
+
+#fecha {
+    font-size: 12px;
+}
+
+#boton_comentarios {
+    background-color: #ff5733; /* Green */
+    border: none;
+    color: #fff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#formulario {
+    margin: 2.5%;
+}
+
+#buscador {
+    padding: 6px 10px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    color: #000;
+    width: 200px;
+    float: right;
+}
+
+/* La cuadrícula se divide en 3x3.
+Dejando a cada columna 1/3 del espacio libre, no hace falta definir las filas
+porque una vez que una de ellas tenga 3 elementos se crea otra fila debajo */
+.cuadricula {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Defino position:relative para que el texto aparezca encima de cada caja, si no aparecería en una esquina de la página */
+.box {
+    background-color: #000000;
+    position: relative;
+    margin: 0.5%;
+}
+
+.sidebar {
+    background-color: #571845;
+    padding-left: 2%;
+}
+
+/* Nombre de los grupos */
+.texto1 {
+    bottom: 20px;
+    left: 8px;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+}
+
+/* Lugar y fecha de cada evento */
+.texto2 {
+    bottom: 8px;
+    left: 8px;
+    font-size: 14px;
+    position: absolute;
+}
+
+.articulo {
+    background-color: #571845;
+    padding: 0.5%;
+}
+
+/* Título y subtítulo para los artículos */
+.titulo {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.subtitulo {
+    font-size: 28px;
+}
+
+/* Parráfos con texto justificado */
+p {
+    text-align: justify;
+}
+
+.pie {
+    text-align: center;
+}
+
+/* La foto se coloca a la derecha de la página */
+.fotoarticulo {
+    margin: 0.5%;
+    max-width: 30%;
+    float: right;
+}
+
+.redsocial {
+    width: 2.5%;
+    max-width: 50px;
+}
+
+#buscar {
+    float: right;
+    padding: 6px;
+    margin-top: 32px;
+    background: #ff5733;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+/* Enlaces de la barra izquierda */
+.enlace {
+    text-align: center;
+    font-weight: bold;
+}
+
+a {
+    color: white;
+}
+
+a:visited {
+    color: #ff5733;
+}
+
+.menu ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.menu a {
+    display: block;
+    padding: 1em;
+    background-color: #920F3F;
+    text-decoration: none;
+    color: #191C26;
+}
+
+/* Cambia el color del menú cuando se pasa el ratón por encima */
+.menu a:hover {
+    background-color: #c70039;
+}
+
+/* Oculta los submenús */
+.menu ul li ul {
+    display: none;
+}
+
+/* ".menu ul li a:hover + ul" hace que se muestre, si existe, el submenú una vez se pasa el ratón por encima del menú principal.
+".menu ul li ul:hover" permite pasar el ratón por encima de este submenú, si no desaparecería otra vez */
+.menu ul li a:hover + ul, .menu ul li ul:hover {
+    display: block;
+}
+
+* {
+    box-sizing: border-box;
+}
+  
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+    position: relative;
+}
+  
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+  
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+  
+/* Position the "next button" to the right */
+.next {
+    right: 70%;
+    border-radius: 3px 0 0 3px;
+}
+  
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#smalltext {
+    font-size: 10px;
+    font-style: italic;
+}
+
+#medtext {
+    font-size: 14px;
+}
+
+#bigtext {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#lista_comentarios {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 0.5%;
+    margin: 0.5% 0% 0.5%;
+    height: auto;
+}

@@ -1,0 +1,39 @@
+{% extends "padre.html" %}
+
+{% block eventos %}
+    <div class="articulo">
+        <h1>Usuarios</h1>
+        {% for usuario in usuarios %}
+            {{usuario.username}}
+            <form action="administrar.php" method="post">
+                {% if usuario.usernormal %}
+                    <input type="radio" name="permiso" value="registrado" checked/>
+                {% else %}
+                    <input type="radio" name="permiso" value="registrado"/>
+                {% endif %}
+                <label for="texto">Registrado</label><br>
+                {% if usuario.moderador %}
+                    <input type="radio" name="permiso" value="moderador" checked/>
+                {% else %}
+                    <input type="radio" name="permiso" value="moderador"/>
+                {% endif %}
+                <label for="texto">Moderador</label><br>
+                {% if usuario.gestor %}
+                    <input type="radio" name="permiso" value="gestor" checked/>
+                {% else %}
+                    <input type="radio" name="permiso" value="gestor"/>
+                {% endif %}
+                <label for="texto">Gestor</label><br>
+                {% if usuario.superusuario %}
+                    <input type="radio" name="permiso" value="superusuario" checked/>
+                {% else %}
+                    <input type="radio" name="permiso" value="superusuario"/>
+                {% endif %}
+                <label for="texto">Superusuario</label><br>
+                <input type="hidden" name="user" value="{{usuario.username}}"/>
+                <input type="submit" style="color: #000" value="Modificar"/>
+            </form>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}

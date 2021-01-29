@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <!-- Enlazamos el archivo HTML y CSS -->
+    <head>
+        <link rel="stylesheet" type="text/css" href="../estilos/portada.css">
+        <title>Music Radar</title>
+    </head>
+    <body>
+        <!-- En la cabecera se encuentra el logo con el nombre de la página y los botones de menú -->
+        <header>
+            <div>
+                <!-- Se puede hacer click en el logo siempre que se quiera actualizar -->
+                <a href="indice.php"><img src="images/vinyl.png"/></a>
+            </div>
+            <div class="cabecera">
+                <h1>Music Radar</h1>
+                <!-- La sección nav se utiliza para los menús. Están hechos a partir de unordered lists -->
+                <nav class="menu">
+                    <ul>
+                        <!-- href="#" simplemente mueve a lo alto de la página -->
+                        <li><a href="#">Menú 1</a>
+                            <ul>
+                                <li><a href="#">Menú 1.1</a></li>
+                                <li><a href="#">Menú 1.2</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Menú 2</a>
+                            <ul>
+                                <li><a href="#">Menú 2.1</a></li>
+                                <li><a href="#">Menú 2.2</a></li>
+                                <li><a href="#">Menú 2.3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Menú 3</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="inicio">
+                {% block panel %}
+                {% endblock %}
+                <a href="render.php"><button type="submit" id="buscar">Buscar</button></a>
+            </div>
+        </header>
+        <!-- En "principal" separamos la barra lateral de los eventos -->
+        <div id="principal">
+            <!-- En la barra lateral hay enlaces a páginas relacionadas con la música -->
+            <div class="sidebar">
+                <p>Enlaces de interés:</p>
+                <p class="enlace"><a href="https://www.pitchfork.com">Pitchfork</a></p>
+                <p class="enlace"><a href="https://www.billboard.com">Billboard</a></p>
+                <p class="enlace"><a href="https://www.rollingstone.com">Rolling Stone</a></p>
+                <p class="enlace"><a href="https://www.primaverasound.com/es">Primavera Sound</a></p>
+                <p class="enlace"><a href="https://madcoolfestival.es">Mad Cool</a></p>
+                <p class="enlace"><a href="https://www.theneedledrop.com">The Needle Drop</a></p>
+            </div>
+            {% block eventos %}
+            {% endblock %}
+        </div>
+        <!-- Al final se coloca el pie de página -->
+        <footer>
+            <p class="pie">Página hecha por Juan Pablo García</p>
+            <p class="pie">Contacto: juanpabloyeste@correo.ugr.es</p>
+        </footer>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/evento.js"></script>
+</html>

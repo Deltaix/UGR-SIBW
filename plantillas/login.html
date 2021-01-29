@@ -1,0 +1,12 @@
+{% extends "padre.html" %}
+
+{% block eventos %}
+    <div class="articulo">
+        <h1>Login</h1>
+        <form action="login.php" method="post">
+            Nombre de usuario: <input type="text" style="color: #000" name="nick"/><br><br>
+            Contraseña: <input type="password" style="color: #000" name="pass"/><br><br>
+            <input type="submit" id="boton_comentarios" value="Log in"/>
+        </form>
+    </div>
+{% endblock %}

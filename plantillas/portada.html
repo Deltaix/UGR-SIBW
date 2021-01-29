@@ -1,0 +1,34 @@
+{% extends "padre.html" %}
+
+{% block panel %}
+    <div id="inicio">
+        {% if not nombre %}
+            <a href="login.php">Iniciar sesión</a> - <a href="registrarse.php">Registrarse</a>
+        {% else %}
+            {% if rango == "usernormal" %}
+                <strong>{{nombre}}</strong> - User Registrado - <a href="logout.php">Cerrar sesión</a>
+            {% elseif rango == "moderador" %}
+                <strong>{{nombre}}</strong> - Moderador - <a href="logout.php">Cerrar sesión</a>
+            {% elseif rango == "gestor" %}
+                <strong>{{nombre}}</strong> - Gestor - <a href="logout.php">Cerrar sesión</a>
+            {% else %}
+                <strong>{{nombre}}</strong> - Superusuario - <a href="logout.php">Cerrar sesión</a>
+            {% endif %}
+            <br><br><strong><a href="panel.php">Panel de control</a></strong>
+        {% endif %}        
+    </div>
+{% endblock %}
+
+{% block eventos %}
+    <div class="cuadricula">
+        {% for ev in eventos %}
+            <div class="box">
+                <a href="evento.php?id={{ev.id}}">
+                    <img src="{{ev.imagen}}"/>
+                    <div class="texto1">{{ev.nombre}}</div>
+                    <div class="texto2">{{ev.fecha}} - {{ev.lugar}}</div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

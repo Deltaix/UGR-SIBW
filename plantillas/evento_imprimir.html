@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <!-- Enlazamos el archivo html y css -->
+    <head>
+        <link rel="stylesheet" type="text/css" href="../estilos/evento_imprimir.css">
+        <title>Music Radar</title>
+    </head>
+    <body>
+        <!-- En la cabecera se encuentra el logo con el nombre de la página -->
+        <header>
+            <!-- Se puede hacer click en el logo siempre que se quiera volver a la página inicial -->
+            <a href="indice.php"><img class="logo" src="images/vinyl.png"/></a>
+            <h1>Music Radar</h1>
+        </header>
+        <div class="articulo">
+            <div class="titulo">
+                {{evento.nombre}}
+            </div>
+            <div class="subtitulo">{{evento.lugar}}</div>
+            <p>{{evento.fecha}}</p>
+            <p>
+                {{evento.texto}}
+            </p>
+        </div>
+    </body>
+</html>
